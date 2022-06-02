@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:test_project/src/components/widgets/page_widget.dart';
 import 'package:test_project/src/components/widgets/user_name_widget.dart';
 
 class UserNameWidgetTest {
