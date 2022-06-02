@@ -8,15 +8,6 @@ class UserEntity extends Equatable {
 
   const UserEntity({required this.id, required this.firstName, required this.lastName, required this.imageUrl});
 
-  UserEntity copyWith({String? firstName, String? lastName, String? imageUrl}) {
-    return UserEntity(
-      id: id,
-      firstName: firstName ?? this.firstName,
-      lastName: lastName ?? this.lastName,
-      imageUrl: imageUrl ?? this.imageUrl,
-    );
-  }
-
   String fullName() => "$firstName $lastName";
 
   @override

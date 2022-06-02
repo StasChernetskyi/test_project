@@ -115,6 +115,20 @@ class UserItemWidgetTest {
 
         expect(textButtonFinder, findsOneWidget);
       });
+
+      testWidgets('Test onPressed on TextButton', (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: UserItemWidget(user: user),
+            ),
+          ),
+        );
+
+        final TextButton textButtonWidget = tester.widget(find.byType(TextButton));
+
+        expect(textButtonWidget.onPressed != null, true);
+      });
     });
   }
 }
