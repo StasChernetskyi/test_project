@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:test_project/src/router/router.gr.dart';
+import 'package:test_project/src/service_locator/get_it.dart';
 
-void main() {
+void main() async {
+  await setupDependencies();
   runApp(App());
 }
 
