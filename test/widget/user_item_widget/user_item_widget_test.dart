@@ -15,17 +15,17 @@ class UserItemWidgetTest {
       imageUrl: "https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg",
     );
 
+    const Widget testWidget = MaterialApp(
+      home: Scaffold(
+        body: UserItemWidget(user: user),
+      ),
+    );
+
     setUpAll(() => HttpOverrides.global = null);
 
     group("User Item Widget test", () {
       testWidgets('Test the number of image widgets', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserItemWidget(user: user),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final Finder imageFinder = find.byType(Image);
 
@@ -33,13 +33,7 @@ class UserItemWidgetTest {
       });
 
       testWidgets('Test the image shown', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserItemWidget(user: user),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final Image networkImage = tester.widget(find.byType(Image));
 
@@ -47,13 +41,7 @@ class UserItemWidgetTest {
       });
 
       testWidgets('Test the number of text widgets', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserItemWidget(user: user),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final Finder textFinder = find.byType(Text);
 
@@ -61,13 +49,7 @@ class UserItemWidgetTest {
       });
 
       testWidgets('Test the full name is displayed correctly', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserItemWidget(user: user),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final Text textWidget = tester.widget(find.byType(Text));
 
@@ -75,13 +57,7 @@ class UserItemWidgetTest {
       });
 
       testWidgets('Test the number of hero widgets', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserItemWidget(user: user),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final Finder heroFinder = find.byType(Hero);
 
@@ -89,13 +65,7 @@ class UserItemWidgetTest {
       });
 
       testWidgets('Test the tag in hero widget', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserItemWidget(user: user),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final Hero heroWidget = tester.widget(find.byType(Hero));
 
@@ -103,13 +73,7 @@ class UserItemWidgetTest {
       });
 
       testWidgets('Test the number of TextButton widgets', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserItemWidget(user: user),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final Finder textButtonFinder = find.byType(TextButton);
 
@@ -117,13 +81,7 @@ class UserItemWidgetTest {
       });
 
       testWidgets('Test onPressed on TextButton', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserItemWidget(user: user),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final TextButton textButtonWidget = tester.widget(find.byType(TextButton));
 

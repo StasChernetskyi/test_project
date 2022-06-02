@@ -7,17 +7,17 @@ class UserNameWidgetTest {
   void main() {
     const String userFullName = "The Rock";
 
+    const Widget testWidget = MaterialApp(
+      home: Scaffold(
+        body: UserNameWidget(
+          userFullName: userFullName,
+        ),
+      ),
+    );
+
     group("User Name Widget test", () {
       testWidgets('Test the number of text widgets', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserNameWidget(
-                userFullName: userFullName,
-              ),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final Finder textFinder = find.byType(Text);
 
@@ -25,15 +25,7 @@ class UserNameWidgetTest {
       });
 
       testWidgets('Test value in text widget', (WidgetTester tester) async {
-        await tester.pumpWidget(
-          const MaterialApp(
-            home: Scaffold(
-              body: UserNameWidget(
-                userFullName: userFullName,
-              ),
-            ),
-          ),
-        );
+        await tester.pumpWidget(testWidget);
 
         final Text textWidget = tester.widget(find.byType(Text));
 
