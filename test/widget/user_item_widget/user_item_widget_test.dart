@@ -8,8 +8,6 @@ import 'package:test_project/src/models/user_entity.dart';
 
 class UserItemWidgetTest {
   void main() {
-    setUpAll(() => HttpOverrides.global = null);
-
     const UserEntity user = UserEntity(
       id: 0,
       firstName: "The",
@@ -17,7 +15,9 @@ class UserItemWidgetTest {
       imageUrl: "https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg",
     );
 
-    group("User Item Widget", () {
+    setUpAll(() => HttpOverrides.global = null);
+
+    group("User Item Widget test", () {
       testWidgets('Test the number of image widgets', (WidgetTester tester) async {
         await tester.pumpWidget(
           const MaterialApp(
@@ -31,34 +31,90 @@ class UserItemWidgetTest {
 
         expect(imageFinder, findsOneWidget);
       });
-    });
 
-    testWidgets('Test the number of text widgets', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserItemWidget(user: user),
+      testWidgets('Test the image shown', (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: UserItemWidget(user: user),
+            ),
           ),
-        ),
-      );
+        );
 
-      final Finder textFinder = find.byType(Text);
+        final Image networkImage = tester.widget(find.byType(Image));
 
-      expect(textFinder, findsOneWidget);
-    });
+        expect((networkImage.image as NetworkImage).url, user.imageUrl);
+      });
 
-    testWidgets('Test the full name is displayed correctly', (WidgetTester tester) async {
-      await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserItemWidget(user: user),
+      testWidgets('Test the number of text widgets', (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: UserItemWidget(user: user),
+            ),
           ),
-        ),
-      );
+        );
 
-      final Text textWidget = tester.widget(find.byType(Text));
+        final Finder textFinder = find.byType(Text);
 
-      expect(textWidget.data, "The Rock");
+        expect(textFinder, findsOneWidget);
+      });
+
+      testWidgets('Test the full name is displayed correctly', (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: UserItemWidget(user: user),
+            ),
+          ),
+        );
+
+        final Text textWidget = tester.widget(find.byType(Text));
+
+        expect(textWidget.data, user.fullName());
+      });
+
+      testWidgets('Test the number of hero widgets', (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: UserItemWidget(user: user),
+            ),
+          ),
+        );
+
+        final Finder heroFinder = find.byType(Hero);
+
+        expect(heroFinder, findsOneWidget);
+      });
+
+      testWidgets('Test the tag in hero widget', (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: UserItemWidget(user: user),
+            ),
+          ),
+        );
+
+        final Hero heroWidget = tester.widget(find.byType(Hero));
+
+        expect(heroWidget.tag, "user ${user.id}");
+      });
+
+      testWidgets('Test the number of TextButton widgets', (WidgetTester tester) async {
+        await tester.pumpWidget(
+          const MaterialApp(
+            home: Scaffold(
+              body: UserItemWidget(user: user),
+            ),
+          ),
+        );
+
+        final Finder textButtonFinder = find.byType(TextButton);
+
+        expect(textButtonFinder, findsOneWidget);
+      });
     });
   }
 }
