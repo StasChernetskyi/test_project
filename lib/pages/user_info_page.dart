@@ -30,7 +30,9 @@ class UserInfoPage extends StatelessWidget {
               const SizedBox(
                 height: 24.0,
               ),
-              UserNameWidget(firstName: user.firstName, lastName: user.lastName),
+              UserNameWidget(
+                userFullName: user.fullName(),
+              ),
               const SizedBox(
                 height: 24.0,
               ),

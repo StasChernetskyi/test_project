@@ -17,6 +17,8 @@ class UserEntity extends Equatable {
     );
   }
 
+  String fullName() => "$firstName $lastName";
+
   @override
   List<Object?> get props => [firstName, lastName, imageUrl];
 }

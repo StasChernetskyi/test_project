@@ -31,7 +31,9 @@ class UserItemWidget extends StatelessWidget {
             const SizedBox(
               height: 16.0,
             ),
-            UserNameWidget(firstName: user.firstName, lastName: user.lastName),
+            UserNameWidget(
+              userFullName: user.fullName(),
+            ),
           ],
         ),
       ),
