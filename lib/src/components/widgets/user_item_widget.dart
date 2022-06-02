@@ -13,16 +13,20 @@ class UserItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        AutoRouter.of(context).push(UserInfoRoute(user: user));
+        // ignore: avoid_print
+        AutoRouter.of(context).push(UserInfoRoute(user: user)).then((value) => print(value));
       },
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Image.network(
-              user.imageUrl,
-              height: 250,
+            Hero(
+              tag: "user ${user.id}",
+              child: Image.network(
+                user.imageUrl,
+                height: 250,
+              ),
             ),
             const SizedBox(
               height: 16.0,

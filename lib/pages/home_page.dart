@@ -1,33 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import 'package:test_project/res/app_text_style.dart';
+import 'package:test_project/src/blocs/home/home_cubit.dart';
 import 'package:test_project/src/components/widgets/page_widget.dart';
 import 'package:test_project/src/components/widgets/user_item_widget.dart';
-import 'package:test_project/src/models/user_entity.dart';
+import 'package:test_project/src/service_locator/get_it.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return PageWidget(
-      appBar: AppBar(
-        title: Text(
-          "Test project",
-          style: AppTextStyle.homeAppBarTitle,
-        ),
-      ),
-      child: ListView.separated(
-        itemCount: 10,
-        itemBuilder: (context, index) => const UserItemWidget(
-          user: UserEntity(
-            id: 1,
-            firstName: "The",
-            lastName: "Rock",
-            imageUrl: "https://www.dmarge.com/wp-content/uploads/2021/01/dwayne-the-rock-.jpg",
+    return BlocProvider<HomeCubit>(
+      create: (_) => HomeCubit(getIt()),
+      child: PageWidget(
+        appBar: AppBar(
+          title: Text(
+            "Test project",
+            style: AppTextStyle.homeAppBarTitle,
           ),
         ),
-        separatorBuilder: (context, index) => const SizedBox(
-          height: 24.0,
+        child: BlocBuilder<HomeCubit, HomeState>(
+          builder: (context, state) {
+            if (state.users != null) {
+              return ListView.separated(
+                itemCount: state.users!.length,
+                itemBuilder: (context, index) => UserItemWidget(
+                  user: state.users![index],
+                ),
+                separatorBuilder: (context, index) => const SizedBox(
+                  height: 24.0,
+                ),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
         ),
       ),
     );
