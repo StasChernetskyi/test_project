@@ -14,7 +14,10 @@ class UserItemWidget extends StatelessWidget {
     return TextButton(
       onPressed: () {
         // ignore: avoid_print
-        AutoRouter.of(context).push(UserInfoRoute(user: user)).then((value) => print(value));
+        //todo prefer to use async
+        AutoRouter.of(context)
+            .push(UserInfoRoute(user: user))
+            .then((value) => print(value));
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),

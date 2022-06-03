@@ -20,6 +20,7 @@ dependencies:
   equatable: ^2.0.3
 # Service Locator
   get_it: ^7.2.0
+# todo this must be in dev_dependencies
 # Tests package
   mocktail: ^0.3.0
   bloc_test: ^9.0.3
