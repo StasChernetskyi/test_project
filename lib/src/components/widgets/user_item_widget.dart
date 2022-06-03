@@ -12,12 +12,11 @@ class UserItemWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {
+      onPressed: () async {
+        final answer = await AutoRouter.of(context)
+            .push(UserInfoRoute(user: user));
         // ignore: avoid_print
-        //todo prefer to use async
-        AutoRouter.of(context)
-            .push(UserInfoRoute(user: user))
-            .then((value) => print(value));
+        print(answer);
       },
       child: Padding(
         padding: const EdgeInsets.all(8.0),
