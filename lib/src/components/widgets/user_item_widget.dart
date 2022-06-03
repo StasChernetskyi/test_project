@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:test_project/src/components/widgets/cached_network_image_widget.dart';
+
 import 'package:test_project/src/components/widgets/user_name_widget.dart';
 import 'package:test_project/src/models/user_entity.dart';
 import 'package:test_project/src/router/router.gr.dart';
@@ -13,8 +15,7 @@ class UserItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () async {
-        final answer = await AutoRouter.of(context)
-            .push(UserInfoRoute(user: user));
+        final answer = await AutoRouter.of(context).push(UserInfoRoute(user: user));
         // ignore: avoid_print
         print(answer);
       },
@@ -25,9 +26,8 @@ class UserItemWidget extends StatelessWidget {
           children: [
             Hero(
               tag: "user ${user.id}",
-              child: Image.network(
-                user.imageUrl,
-                height: 250,
+              child: CachedNetworkImageWidget(
+                imageUrl: user.imageUrl,
               ),
             ),
             const SizedBox(

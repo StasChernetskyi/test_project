@@ -17,23 +17,25 @@ dependencies:
   auto_route: ^4.0.1
 # Bloc package
   flutter_bloc: ^8.0.1
-# Service Locator
+# Service Locator packages
   injectable: ^1.5.3
   get_it: ^7.2.0
-# Models generator
+# Models generator package
   freezed_annotation: ^2.0.3
+# UI packages
+  cached_network_image: ^3.2.1
 
 dev_dependencies:
-# Models generator
+# Models generator package
   freezed: ^2.0.3+1
-# Navigation package generator
+# Navigation package generator packages
   auto_route_generator: ^4.0.0
   build_runner: ^2.1.11
-# Tests package
+# Tests packages
   mocktail: ^0.3.0
   bloc_test: ^9.0.3
   image_test_utils: ^1.0.0
-# Service Locator generator
+# Service Locator generator package
   injectable_generator: ^1.5.3
 
   flutter_test:

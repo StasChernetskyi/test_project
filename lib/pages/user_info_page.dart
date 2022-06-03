@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:test_project/src/blocs/user_info/user_info_bloc.dart';
+import 'package:test_project/src/components/widgets/cached_network_image_widget.dart';
 import 'package:test_project/src/components/widgets/page_widget.dart';
 import 'package:test_project/src/components/widgets/user_name_widget.dart';
 import 'package:test_project/src/models/user_entity.dart';
@@ -28,8 +29,8 @@ class UserInfoPage extends StatelessWidget {
                 children: [
                   Hero(
                     tag: "user ${user.id}",
-                    child: Image.network(
-                      user.imageUrl,
+                    child: CachedNetworkImageWidget(
+                      imageUrl: user.imageUrl,
                     ),
                   ),
                   const SizedBox(
