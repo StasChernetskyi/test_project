@@ -1,8 +1,8 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:test_project/src/blocs/home/home_bloc.dart';
 
-import 'package:test_project/src/blocs/home/home_cubit.dart';
 import 'package:test_project/src/models/user_entity.dart';
 import 'package:test_project/src/repository/user_repository.dart';
 import 'package:test_project/src/service_locator/get_it.dart';
@@ -37,7 +37,7 @@ class HomeCubitTest {
         build: () {
           return HomeCubit(getIt.get<UserRepository>());
         },
-        expect: () => <HomeState>[HomeState(users)],
+        expect: () => <HomeState>[HomeState(users: users, isLoading: false)],
       );
     });
   }

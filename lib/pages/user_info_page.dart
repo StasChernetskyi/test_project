@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_project/src/blocs/user_info/user_info_cubit.dart';
+
+import 'package:test_project/src/blocs/user_info/user_info_bloc.dart';
 import 'package:test_project/src/components/widgets/page_widget.dart';
 import 'package:test_project/src/components/widgets/user_name_widget.dart';
 import 'package:test_project/src/models/user_entity.dart';

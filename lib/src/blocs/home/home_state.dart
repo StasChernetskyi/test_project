@@ -1,12 +1,13 @@
-part of 'home_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-//todo use freezed model
-class HomeState extends Equatable {
-  //todo: better to avoid null, add isLoading instead
-  final List<UserEntity>? users;
+import 'package:test_project/src/models/user_entity.dart';
 
-  const HomeState(this.users);
+part 'home_state.freezed.dart';
 
-  @override
-  List<Object?> get props => [users];
+@freezed
+class HomeState with _$HomeState {
+  const factory HomeState({
+    required List<UserEntity> users,
+    required bool isLoading,
+  }) = _HomeState;
 }

@@ -1,3 +1,8 @@
-part of 'user_info_cubit.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class UserInfoState {}
+part 'user_info_state.freezed.dart';
+
+@freezed
+class UserInfoState with _$UserInfoState{
+  const factory UserInfoState() = _UserInfoState;
+}

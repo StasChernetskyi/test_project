@@ -54,8 +54,7 @@ class HomeRoute extends _i3.PageRouteInfo<void> {
 class UserInfoRoute extends _i3.PageRouteInfo<UserInfoRouteArgs> {
   UserInfoRoute({required _i5.UserEntity user, _i4.Key? key})
       : super(UserInfoRoute.name,
-            path: '/user-info',
-            args: UserInfoRouteArgs(user: user, key: key));
+            path: '/user-info', args: UserInfoRouteArgs(user: user, key: key));
 
   static const String name = 'UserInfoRoute';
 }
