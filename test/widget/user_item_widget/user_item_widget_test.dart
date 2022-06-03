@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -37,7 +38,7 @@ class UserItemWidgetTest {
 
         final Image networkImage = tester.widget(find.byType(Image));
 
-        expect((networkImage.image as NetworkImage).url, user.imageUrl);
+        expect((networkImage.image as CachedNetworkImageProvider).url, user.imageUrl);
       });
 
       testWidgets('Test the number of text widgets', (WidgetTester tester) async {

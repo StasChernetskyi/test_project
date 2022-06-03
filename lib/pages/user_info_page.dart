@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_project/src/blocs/user_info/user_info_cubit.dart';
+
+import 'package:test_project/src/blocs/user_info/user_info_bloc.dart';
+import 'package:test_project/src/components/widgets/cached_network_image_widget.dart';
 import 'package:test_project/src/components/widgets/page_widget.dart';
 import 'package:test_project/src/components/widgets/user_name_widget.dart';
 import 'package:test_project/src/models/user_entity.dart';
@@ -13,8 +15,10 @@ class UserInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<UserInfoCubit>(
-      create: (_) => UserInfoCubit(),
+    return BlocListener<UserInfoCubit, UserInfoState>(
+      listener: (context, state) {
+        if (state.navigateBack) AutoRouter.of(context).pop("Close user info page");
+      },
       child: PageWidget(
         appBar: AppBar(),
         child: Padding(
@@ -23,8 +27,8 @@ class UserInfoPage extends StatelessWidget {
             children: [
               Hero(
                 tag: "user ${user.id}",
-                child: Image.network(
-                  user.imageUrl,
+                child: CachedNetworkImageWidget(
+                  imageUrl: user.imageUrl,
                 ),
               ),
               const SizedBox(
@@ -36,14 +40,11 @@ class UserInfoPage extends StatelessWidget {
               const SizedBox(
                 height: 24.0,
               ),
-              Builder(
-                builder: (context) => TextButton(
-                  onPressed: () {
-                    BlocProvider.of<UserInfoCubit>(context).printLog();
-                    AutoRouter.of(context).pop("Close user info page");
-                  },
-                  child: const Text("Back button"),
-                ),
+              TextButton(
+                onPressed: () {
+                  BlocProvider.of<UserInfoCubit>(context).printLog();
+                },
+                child: const Text("Back button"),
               ),
             ],
           ),
