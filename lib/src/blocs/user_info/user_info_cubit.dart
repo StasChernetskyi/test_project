@@ -10,6 +10,6 @@ class UserInfoCubit extends Cubit<UserInfoState> {
     await Future.delayed(const Duration(milliseconds: 500));
     // ignore: avoid_print
     print("Pressed back button");
-    emit(const UserInfoState(navigateBack: true));
+    emit(state.copyWith(navigateBack: true));
   }
 }

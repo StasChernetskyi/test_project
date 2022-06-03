@@ -12,6 +12,6 @@ class HomeCubit extends Cubit<HomeState> {
   void getUsers() async {
     final List<UserEntity> users = await _repository.getUsers();
 
-    emit(HomeState(users: users, isLoading: false));
+    emit(state.copyWith(users: users, isLoading: false));
   }
 }
