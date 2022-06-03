@@ -6,8 +6,6 @@ import 'package:test_project/src/service_locator/get_it.config.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit(
-  initializerName: r'$configureDependencies', // default
-  preferRelativeImports: true, // default
-  asExtension: false, // default
+  initializerName: r'$configureDependencies',
 )
 void configureDependencies() => $configureDependencies(getIt);
