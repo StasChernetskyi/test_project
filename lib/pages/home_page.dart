@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<HomeCubit>(
-      create: (_) => HomeCubit(getIt()),
+      create: (_) => HomeCubit(getIt())..getUsers(),
       child: PageWidget(
         appBar: AppBar(
           title: Text(

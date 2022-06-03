@@ -37,6 +37,7 @@ class HomeCubitTest {
         build: () {
           return HomeCubit(getIt.get<UserRepository>());
         },
+        act: (c) => c.getUsers(),
         expect: () => <HomeState>[HomeState(users: users, isLoading: false)],
       );
     });
