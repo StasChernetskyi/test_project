@@ -12,7 +12,7 @@ class UserInfoCubitTest {
           return UserInfoCubit();
         },
         act: (c) => c.printLog(),
-        expect: () => <UserInfoState>[],
+        expect: () => <UserInfoState>[const UserInfoState(navigateBack: true)],
       );
     });
   }

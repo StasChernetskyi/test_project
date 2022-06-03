@@ -4,5 +4,5 @@ part 'user_info_state.freezed.dart';
 
 @freezed
 class UserInfoState with _$UserInfoState{
-  const factory UserInfoState() = _UserInfoState;
+  const factory UserInfoState({@Default(false) bool navigateBack}) = _UserInfoState;
 }

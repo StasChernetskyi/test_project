@@ -6,7 +6,11 @@ import 'package:test_project/src/blocs/user_info/user_info_state.dart';
 class UserInfoCubit extends Cubit<UserInfoState> {
   UserInfoCubit() : super(const UserInfoState());
 
-  //todo this is technical debt
-  // ignore: avoid_print
-  void printLog() => print("Pressed back button");
+  Future<void> printLog() async {
+    // Doing something...
+    await Future.delayed(const Duration(milliseconds: 500));
+    // ignore: avoid_print
+    print("Pressed back button");
+    emit(const UserInfoState(navigateBack: true));
+  }
 }

@@ -15,41 +15,44 @@ class UserInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<UserInfoCubit>(
-      create: (_) => UserInfoCubit(),
-      child: PageWidget(
-        appBar: AppBar(),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Hero(
-                tag: "user ${user.id}",
-                child: Image.network(
-                  user.imageUrl,
-                ),
+        create: (_) => UserInfoCubit(),
+        child: BlocListener<UserInfoCubit, UserInfoState>(
+          listener: (context, state) {
+            if (state.navigateBack) AutoRouter.of(context).pop("Close user info page");
+          },
+          child: PageWidget(
+            appBar: AppBar(),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Hero(
+                    tag: "user ${user.id}",
+                    child: Image.network(
+                      user.imageUrl,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 24.0,
+                  ),
+                  UserNameWidget(
+                    userFullName: user.fullName(),
+                  ),
+                  const SizedBox(
+                    height: 24.0,
+                  ),
+                  Builder(
+                    builder: (context) => TextButton(
+                      onPressed: () {
+                        BlocProvider.of<UserInfoCubit>(context).printLog();
+                      },
+                      child: const Text("Back button"),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 24.0,
-              ),
-              UserNameWidget(
-                userFullName: user.fullName(),
-              ),
-              const SizedBox(
-                height: 24.0,
-              ),
-              Builder(
-                builder: (context) => TextButton(
-                  onPressed: () {
-                    BlocProvider.of<UserInfoCubit>(context).printLog();
-                    AutoRouter.of(context).pop("Close user info page");
-                  },
-                  child: const Text("Back button"),
-                ),
-              ),
-            ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 }
