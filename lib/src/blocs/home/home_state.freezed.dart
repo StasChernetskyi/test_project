@@ -98,17 +98,19 @@ class __$$_HomeStateCopyWithImpl<$Res> extends _$HomeStateCopyWithImpl<$Res>
 
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
-      {required final List<UserEntity> users, required this.isLoading})
+      {final List<UserEntity> users = const [], this.isLoading = true})
       : _users = users;
 
   final List<UserEntity> _users;
   @override
+  @JsonKey()
   List<UserEntity> get users {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_users);
   }
 
   @override
+  @JsonKey()
   final bool isLoading;
 
   @override
@@ -139,8 +141,7 @@ class _$_HomeState implements _HomeState {
 
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
-      {required final List<UserEntity> users,
-      required final bool isLoading}) = _$_HomeState;
+      {final List<UserEntity> users, final bool isLoading}) = _$_HomeState;
 
   @override
   List<UserEntity> get users => throw _privateConstructorUsedError;

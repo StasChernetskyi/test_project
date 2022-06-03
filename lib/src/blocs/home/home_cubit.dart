@@ -7,7 +7,7 @@ import 'package:test_project/src/repository/user_repository.dart';
 class HomeCubit extends Cubit<HomeState> {
   final UserRepository _repository;
 
-  HomeCubit(this._repository) : super(const HomeState(users: [], isLoading: true));
+  HomeCubit(this._repository) : super(const HomeState());
 
   void getUsers() async {
     final List<UserEntity> users = await _repository.getUsers();

@@ -7,7 +7,7 @@ part 'home_state.freezed.dart';
 @freezed
 class HomeState with _$HomeState {
   const factory HomeState({
-    required List<UserEntity> users,
-    required bool isLoading,
+    @Default([]) List<UserEntity> users,
+    @Default(true) bool isLoading,
   }) = _HomeState;
 }
