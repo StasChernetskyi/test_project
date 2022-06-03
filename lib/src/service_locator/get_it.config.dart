@@ -5,10 +5,10 @@
 // **************************************************************************
 
 import 'package:get_it/get_it.dart' as _i1;
-
 import 'package:injectable/injectable.dart' as _i2;
 
 import '../repository/user_repository.dart' as _i5;
+import '../repository/user_repository_impl.dart' as _i6;
 import '../services/user/mock_user_service.dart' as _i4;
 import '../services/user/user_service.dart'
     as _i3; // ignore_for_file: unnecessary_lambdas
@@ -19,6 +19,7 @@ _i1.GetIt $configureDependencies(_i1.GetIt get,
     {String? environment, _i2.EnvironmentFilter? environmentFilter}) {
   final gh = _i2.GetItHelper(get, environment, environmentFilter);
   gh.singleton<_i3.UserService>(_i4.MockUserService());
-  gh.singleton<_i5.UserRepository>(_i5.UserRepository(get<_i3.UserService>()));
+  gh.singleton<_i5.UserRepository>(
+      _i6.UserRepositoryImpl(get<_i3.UserService>()));
   return get;
 }
